@@ -8,7 +8,7 @@ public class GUI extends JFrame {
     ImageIcon logo = new ImageIcon("NukeIcon.png");
     JLabel background = new JLabel(new ImageIcon("Layout 2.jpg"));
     public LightTextpanel centerpanel;
-    public Controlpanel bottompanel;
+    //public Controlpanel bottompanel;
 
     ImageIcon controlrod = new ImageIcon("ControlRod_1.png");
 
@@ -22,8 +22,8 @@ public class GUI extends JFrame {
         this.setIconImage(logo.getImage());
         centerpanel = new LightTextpanel();
         this.add(centerpanel);
-        bottompanel = new Controlpanel();
-        this.add(bottompanel);
+        //bottompanel = new Controlpanel();
+        //this.add(bottompanel);
         this.setVisible(true);
     }
 
@@ -76,7 +76,7 @@ public class GUI extends JFrame {
             numfields[2].setBounds(742, 240, 120, 60); // steam valve 2 pressure text field
             numfields[3].setBounds(1227, 115, 120, 60); // generator output text field
             numfields[4].setBounds(570, 60, 120, 60); // outlet steam pressure text field
-            numfields[5].setBounds(838, 35, 120, 60); // turbine breaks text field
+            numfields[5].setBounds(838, 35, 120, 60); // turbine breaks text field (add +4 to id to use)
             numfields[6].setBounds(341, 13, 120, 60); // radiation sensor text field
             numfields[7].setBounds(436, 243, 120, 60); // inlet water pressure text field
             numfields[8].setBounds(212, 393, 120, 60); // rod 2 text field
@@ -85,7 +85,7 @@ public class GUI extends JFrame {
 
         }
         public void UpdateStatusLight(int ID) {
-            if (ID < 0 || ID > 5) { // checking that ID won't go above/below buffer contents
+            if (ID < 0 || ID > 4) { // checking that ID won't go above/below buffer contents
                 System.out.println("ERROR: ID value caused buffer under/overflow. Exiting program.");
                 System.exit(-1);
             }
@@ -100,8 +100,8 @@ public class GUI extends JFrame {
             }
         }
     }
-    public class Controlpanel extends JPanel /*implements ActionListener*/ {
-        public JButton[] buttons = new JButton[11];
+    /*public class Controlpanel extends JPanel /*implements ActionListener*/ //{
+        /*public JButton[] buttons = new JButton[11];
         Controlpanel() {
             for (int i = 0; i < 11; i++) {
                 setLayout(null);
@@ -118,7 +118,7 @@ public class GUI extends JFrame {
         }
 
 
-    }
+    }*/
 
 
 
