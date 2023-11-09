@@ -102,9 +102,9 @@ public class GUI extends JFrame {
         }
     }
     public class Controlpanel extends JPanel /*implements ActionListener*/ {
-        public JButton[] buttons = new JButton[11];
+        public JButton[] buttons = new JButton[12];
         Controlpanel() {
-            for (int i = 0; i < 11; i++) {
+            for (int i = 0; i < 12; i++) {
                 this.setLayout(null);
                 this.setBounds(0, 500, 1400, 400);
                 this.setOpaque(false);
@@ -115,17 +115,22 @@ public class GUI extends JFrame {
                 this.add(buttons[i]);
                 buttons[i].setVisible(true);
             }
-            buttons[0].setBounds(75, 50, 125, 70); //rod up button
-            buttons[1].setBounds(225, 50, 125, 70); //rod down button
-            buttons[2].setBounds(350, 165, 125, 70); // pump up button
-            buttons[3].setBounds(500, 165, 125, 70); //rod up button
-            buttons[4].setBounds(100, 100, 125, 70); //rod up button
-            buttons[5].setBounds(100, 100, 125, 70); //rod up button
-            buttons[6].setBounds(100, 100, 125, 70); //rod up button
-            buttons[7].setBounds(100, 100, 125, 70); //rod up button
-            buttons[8].setBounds(100, 100, 125, 70); //rod up button
-            buttons[9].setBounds(100, 100, 125, 70); //rod up button
-            buttons[10].setBounds(100, 100, 125, 70); //rod up button
+            buttons[0].setBounds(100, 25, 125, 70); //rod up button
+            buttons[1].setBounds(250, 25, 125, 70); //rod down button
+            buttons[2].setBounds(370, 250, 125, 70); //pump up button
+            buttons[3].setBounds(505, 250, 125, 70); //pump up button
+            buttons[4].setBounds(720, 250, 125, 70); //turbine breaks up button
+            buttons[5].setBounds(855, 250, 125, 70); //turbine breaks down button
+            buttons[6].setBounds(1050, 0, 125, 70); //steam valve 1 button
+            buttons[7].setBounds(1050, 100, 125, 70); //steam valve 2 up button
+            buttons[8].setBounds(1250, 0, 125, 70); //pump state button
+            buttons[9].setBounds(1250, 100, 125, 70); //turbine state button
+            buttons[10].setBounds(1250, 200, 125, 70); //generator state button
+            buttons[11].setBounds(50, 150, 175, 125); // SCRAM shutdown button
+            buttons[11].setBackground(new Color(0xA10003));
+            buttons[11].setForeground(new Color(0xFFFFFF));
+            buttons[11].setFont(new Font("Tahoma", Font.BOLD, 28));
+            buttons[11].setText("SCRAM");
 
 
 
