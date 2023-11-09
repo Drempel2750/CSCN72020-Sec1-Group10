@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
@@ -26,6 +27,10 @@ public class GUI extends JFrame {
         this.add(bottompanel);
         this.setVisible(true);
     }
+
+    //public void MoveRod (Depth D) {
+
+   // }
 
     public class LightTextpanel extends JPanel {
         public JLabel[] statuslights = new JLabel[5];
@@ -101,7 +106,7 @@ public class GUI extends JFrame {
             }
         }
     }
-    public class Controlpanel extends JPanel /*implements ActionListener*/ {
+    public class Controlpanel extends JPanel implements ActionListener {
         public JButton[] buttons = new JButton[12];
         Controlpanel() {
             for (int i = 0; i < 12; i++) {
@@ -111,6 +116,8 @@ public class GUI extends JFrame {
                 this.setVisible(true);
                 buttons[i] = new JButton("TEST");
                 buttons[i].setForeground(Color.RED);
+                buttons[i].setBackground(new Color(0x000C72));
+                buttons[i].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
                 buttons[i].setFont(new Font("Tahoma", Font.BOLD, 16));
                 this.add(buttons[i]);
                 buttons[i].setVisible(true);
@@ -126,14 +133,15 @@ public class GUI extends JFrame {
             buttons[8].setBounds(1250, 0, 125, 70); //pump state button
             buttons[9].setBounds(1250, 100, 125, 70); //turbine state button
             buttons[10].setBounds(1250, 200, 125, 70); //generator state button
+
             buttons[11].setBounds(50, 150, 175, 125); // SCRAM shutdown button
             buttons[11].setBackground(new Color(0xA10003));
             buttons[11].setForeground(new Color(0xFFFFFF));
             buttons[11].setFont(new Font("Tahoma", Font.BOLD, 28));
             buttons[11].setText("SCRAM");
-
-
-
+        }
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == buttons[0]) {}
 
         }
 
