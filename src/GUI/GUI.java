@@ -8,7 +8,7 @@ public class GUI extends JFrame {
     ImageIcon logo = new ImageIcon("NukeIcon.png");
     JLabel background = new JLabel(new ImageIcon("Layout 2.jpg"));
     public LightTextpanel centerpanel;
-    //public Controlpanel bottompanel;
+    public Controlpanel bottompanel;
 
     ImageIcon controlrod = new ImageIcon("ControlRod_1.png");
 
@@ -22,8 +22,8 @@ public class GUI extends JFrame {
         this.setIconImage(logo.getImage());
         centerpanel = new LightTextpanel();
         this.add(centerpanel);
-        //bottompanel = new Controlpanel();
-        //this.add(bottompanel);
+        bottompanel = new Controlpanel();
+        this.add(bottompanel);
         this.setVisible(true);
     }
 
@@ -34,9 +34,9 @@ public class GUI extends JFrame {
         ImageIcon greenlight = new ImageIcon("Green_Light_1.jpg");
 
         public LightTextpanel() {
-            setLayout(null);
-            setOpaque(false);
-            setBounds(0, 0, 1400, 500);
+            this.setLayout(null);
+            this.setOpaque(false);
+            this.setBounds(0, 0, 1400, 500);
             InitStatuslights();
             InitNumfields();
         }
@@ -63,6 +63,7 @@ public class GUI extends JFrame {
             for (int i = 0; i < 11; i++) {
                 numfields[i] = new JLabel();
                 numfields[i].setFont(new Font("Tahoma", Font.BOLD, 16));
+                numfields[i].setForeground(Color.RED);
                 numfields[i].setHorizontalAlignment(JLabel.CENTER);
                 numfields[i].setVerticalAlignment(JLabel.CENTER);
                 numfields[i].setHorizontalTextPosition(JLabel.CENTER);
@@ -100,17 +101,31 @@ public class GUI extends JFrame {
             }
         }
     }
-    /*public class Controlpanel extends JPanel /*implements ActionListener*/ //{
-        /*public JButton[] buttons = new JButton[11];
+    public class Controlpanel extends JPanel /*implements ActionListener*/ {
+        public JButton[] buttons = new JButton[11];
         Controlpanel() {
             for (int i = 0; i < 11; i++) {
-                setLayout(null);
-                setBounds(0, 500, 1400, 400);
-                setOpaque(false);
-                setVisible(true);
-                buttons[i] = new JButton("0");
+                this.setLayout(null);
+                this.setBounds(0, 500, 1400, 400);
+                this.setOpaque(false);
+                this.setVisible(true);
+                buttons[i] = new JButton("TEST");
+                buttons[i].setForeground(Color.RED);
                 buttons[i].setFont(new Font("Tahoma", Font.BOLD, 16));
+                this.add(buttons[i]);
+                buttons[i].setVisible(true);
             }
+            buttons[0].setBounds(75, 50, 125, 70); //rod up button
+            buttons[1].setBounds(225, 50, 125, 70); //rod down button
+            buttons[2].setBounds(350, 165, 125, 70); // pump up button
+            buttons[3].setBounds(500, 165, 125, 70); //rod up button
+            buttons[4].setBounds(100, 100, 125, 70); //rod up button
+            buttons[5].setBounds(100, 100, 125, 70); //rod up button
+            buttons[6].setBounds(100, 100, 125, 70); //rod up button
+            buttons[7].setBounds(100, 100, 125, 70); //rod up button
+            buttons[8].setBounds(100, 100, 125, 70); //rod up button
+            buttons[9].setBounds(100, 100, 125, 70); //rod up button
+            buttons[10].setBounds(100, 100, 125, 70); //rod up button
 
 
 
@@ -118,7 +133,7 @@ public class GUI extends JFrame {
         }
 
 
-    }*/
+    }
 
 
 
