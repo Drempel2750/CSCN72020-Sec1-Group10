@@ -119,6 +119,7 @@ public class GUI extends JFrame {
                 buttons[i].setBackground(new Color(0x000C72));
                 buttons[i].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
                 buttons[i].setFont(new Font("Tahoma", Font.BOLD, 16));
+                buttons[i].addActionListener(this);
                 this.add(buttons[i]);
                 buttons[i].setVisible(true);
             }
@@ -141,7 +142,7 @@ public class GUI extends JFrame {
             buttons[11].setText("SCRAM");
         }
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == buttons[0]) {}
+            if (e.getSource() == buttons[0]) {System.exit(1);}
 
         }
 
