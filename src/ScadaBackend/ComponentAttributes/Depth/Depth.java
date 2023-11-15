@@ -1,8 +1,11 @@
 package ScadaBackend.ComponentAttributes.Depth;
 
 import ScadaBackend.ComponentAttributes.Attribute.Attribute;
+import ScadaBackend.FileHandling.FileHandling;
 
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Depth extends Attribute {
     private depthUnit unit;
@@ -26,10 +29,20 @@ public class Depth extends Attribute {
     {
         if (startingUnit == endingUnit)
             return;
-        if (endingUnit == depthUnit.INCHES)
+        if (endingUnit == depthUnit.INCHES) {
             setValue(cmToInches(getValue()));
-        else
+            setMaxAcceptable(cmToInches(getMaxAcceptable()));
+            setMinAcceptable(cmToInches(getMinAcceptable()));
+            setMinWarning(cmToInches(getMinWarning()));
+            setMaxWarning(cmToInches(getMaxWarning()));
+        }
+        else {
             setValue(inchesToCm(getValue()));
+            setMaxAcceptable(inchesToCm(getMaxAcceptable()));
+            setMinAcceptable(inchesToCm(getMinAcceptable()));
+            setMinWarning(inchesToCm(getMinWarning()));
+            setMaxWarning(inchesToCm(getMaxWarning()));
+        }
 
     }
     //Convert centimeters to inches
@@ -39,15 +52,5 @@ public class Depth extends Attribute {
     //Convert inches to centimeters
     public static float inchesToCm(final float inchesValue) {
         return inchesValue * 2.54f;
-    }
-    public static Depth readDepthFromFile(final String fileName) throws FileNotFoundException {
-        int unitOrdinal = 0;
-        Attribute attribute = readAttribute(fileName, unitOrdinal);
-        for (depthUnit unit: depthUnit.values())
-        {
-            if (unit.ordinal() == unitOrdinal)
-                return new Depth(attribute, unit);
-        }//find value of unit that the ordinal is associated with
-        return null;//no Depth object could be created with information read
     }
 }

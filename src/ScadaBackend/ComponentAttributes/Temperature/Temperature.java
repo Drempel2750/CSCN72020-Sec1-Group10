@@ -1,6 +1,7 @@
 package ScadaBackend.ComponentAttributes.Temperature;
 
 import ScadaBackend.ComponentAttributes.Attribute.Attribute;
+import ScadaBackend.ComponentAttributes.Speed.speedUnit;
 
 import java.io.FileNotFoundException;
 
@@ -23,48 +24,30 @@ public class Temperature extends Attribute {
     }
     //conversion functions
     public void convertBetween(final tempUnit startingUnit, final tempUnit endingUnit) {
-        if (startingUnit == tempUnit.CELSIUS){
-            if (endingUnit == tempUnit.KELVIN)
-                setValue(celsiusToKelvin());
-            else if (endingUnit == tempUnit.FAHRENHEIT)
-                setValue(celsiusToFahrenheit());
-        } else if (startingUnit == tempUnit.FAHRENHEIT) {
-            if (endingUnit == tempUnit.CELSIUS)
-                setValue(fahrenheitToCelsius());
-            else if (endingUnit == tempUnit.KELVIN) {
-                setValue(fahrenheitToCelsius());
-                setValue(celsiusToKelvin());
-            }
-        } else {
-            if (endingUnit == tempUnit.CELSIUS)
-                setValue(kelvinToCelsius());
-            else if (endingUnit == tempUnit.FAHRENHEIT) {
-                setValue(kelvinToCelsius());
-                setValue(celsiusToFahrenheit());
-            }
+        if (startingUnit == endingUnit)
+            return;
+        if (startingUnit == tempUnit.CELSIUS)
+        {
+            setValue(celsiusToFahrenheit(getValue()));
+            setMaxAcceptable(celsiusToFahrenheit(getMaxAcceptable()));
+            setMinAcceptable(celsiusToFahrenheit(getMinAcceptable()));
+            setMinWarning(celsiusToFahrenheit(getMinWarning()));
+            setMaxWarning(celsiusToFahrenheit(getMaxWarning()));
+        }
+        else
+        {
+            setValue(fahrenheitToCelsius(getValue()));
+            setMaxAcceptable(fahrenheitToCelsius(getMaxAcceptable()));
+            setMinAcceptable(fahrenheitToCelsius(getMinAcceptable()));
+            setMinWarning(fahrenheitToCelsius(getMinWarning()));
+            setMaxWarning(fahrenheitToCelsius(getMaxWarning()));
         }
     }
-    private float celsiusToFahrenheit() {
-        return (getValue() * (9f / 5f)) + 32f;
+    private float celsiusToFahrenheit(final float value) {
+        return (value * (9f / 5f)) + 32f;
     }
-    private float fahrenheitToCelsius() {
-        return (getValue() - 32f) * (5f / 9f);
-    }
-    private float celsiusToKelvin() {
-        return getValue() + 273.15f;
-    }
-    private float kelvinToCelsius() {
-        return getValue() - 273.15f;
+    private float fahrenheitToCelsius(final float value) {
+        return (value - 32f) * (5f / 9f);
     }
 
-    public static Temperature readTemperatureFromFile(final String fileName) throws FileNotFoundException {
-        int unitOrdinal = 0;
-        Attribute attribute = readAttribute(fileName, unitOrdinal);
-        for (tempUnit unit: tempUnit.values())
-        {
-            if (unit.ordinal() == unitOrdinal)
-                return new Temperature(attribute, unit);
-        }//find value of unit that the ordinal is associated with
-        return null;//no Depth object could be created with information read
-    }
 }

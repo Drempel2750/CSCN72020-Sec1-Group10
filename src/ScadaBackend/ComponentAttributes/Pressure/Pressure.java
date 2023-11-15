@@ -28,10 +28,20 @@ public class Pressure extends Attribute {
     {
         if (startingUnit == endingUnit)
             return;
-        if (endingUnit == pressureUnit.PSI)
+        if (endingUnit == pressureUnit.PSI) {
             setValue(barToPsi(getValue()));
-        else
+            setMaxAcceptable(barToPsi(getMaxAcceptable()));
+            setMinAcceptable(barToPsi(getMinAcceptable()));
+            setMinWarning(barToPsi(getMinWarning()));
+            setMaxWarning(barToPsi(getMaxWarning()));
+        }
+        else {
             setValue(psiToBar(getValue()));
+            setMaxAcceptable(psiToBar(getMaxAcceptable()));
+            setMinAcceptable(psiToBar(getMinAcceptable()));
+            setMinWarning(psiToBar(getMinWarning()));
+            setMaxWarning(psiToBar(getMaxWarning()));
+        }
     }
 
     //Convert PSI to BAR
@@ -44,14 +54,4 @@ public class Pressure extends Attribute {
         return barValue / 0.0689475729f;
     }
 
-    public static Pressure readPressureFromFile(final String fileName) throws FileNotFoundException {
-        int unitOrdinal = 0;
-        Attribute attribute = readAttribute(fileName, unitOrdinal);
-        for (pressureUnit unit: pressureUnit.values())
-        {
-            if (unit.ordinal() == unitOrdinal)
-                return new Pressure(attribute, unit);
-        }//find value of unit that the ordinal is associated with
-        return null;//no Depth object could be created with information read
-    }
 }

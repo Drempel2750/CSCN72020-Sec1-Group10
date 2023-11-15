@@ -18,15 +18,4 @@ public class Volume extends Attribute {
     public volumeUnit getUnit() {
         return unit;
     }
-
-    public static Volume readVolumeFromFile(final String fileName) throws FileNotFoundException {
-        int unitOrdinal = 0;
-        Attribute attribute = readAttribute(fileName, unitOrdinal);
-        for (volumeUnit unit: volumeUnit.values())
-        {
-            if (unit.ordinal() == unitOrdinal)
-                return new Volume(attribute, unit);
-        }//find value of unit that the ordinal is associated with
-        return null;//no Depth object could be created with information read
-    }
 }
