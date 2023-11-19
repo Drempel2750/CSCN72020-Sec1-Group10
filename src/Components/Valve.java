@@ -1,19 +1,14 @@
 package Components;
 
-public class Valve extends Component {
-    // protected State valvestate;
-    /*public Valve() {
-        valvestate = new State();
-    }
-    public Valve(State s) {
-        valvestate = new State();
-        valvestate = s;
-    }
-    public void setValveState(State s) {
-        valvestate = s;
-    }
-    public State getValveState() {
-        return this.valvestate;
-    }*/
+import java.util.Scanner;
 
+public class Valve extends Component {
+
+    public Valve (int ID) {
+        super(State.OFF, ID);
+    }
+    @Override
+    public void getComponentData(final Scanner scanner) {
+        return;
+    }
 }

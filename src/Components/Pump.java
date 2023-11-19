@@ -1,28 +1,27 @@
 package Components;
 
-public class Pump extends Component {
-    //protected State pumpstate;
-    protected int pumppercentage;
+import java.util.Scanner;
 
-    /*public Pump() {
-        pumpstate = new State();
-        pumppercentage = 0;
+public class Pump extends Component {
+    private Volume pumpVolume;
+    private final float minAcceptableVolume = 25;
+    private final float maxAcceptableVolume = 75;
+    private final float minWarningVolume = 15;
+    private final float maxWarningVolume = 95;
+
+    public Pump(int ID) {
+        super(State.OFF, ID);
+        pumpVolume = new Volume(0, volumeUnit.LITRE, minAcceptableVolume, maxAcceptableVolume, minWarningVolume, maxWarningVolume);
     }
-    public Pump(State s, int p) {
-        pumpstate = new State();
-        pumpstate = s;
-        pumppercentage = p;
+    public void setPumpVolume(Volume pumpVolume) {
+        this.pumpVolume = pumpVolume;
     }
-    public void setPumpState(State s) {
-        pumpstate = s;
+    public Volume getPumpVolume() {
+        return pumpVolume;
     }
-    public void setPumpPercentage(int p) {
-        pumppercentage = p;
+    @Override
+    public void getComponentData(final Scanner scanner) {
+        pumpVolume.updateAttributeFromFile(scanner);
+        updateState(pumpVolume);
     }
-    public State getPumpState() {
-        return this.pumpstate;
-    }
-    public int getPumpPercentage() {
-        return this.pumppercentage;
-    }*/
 }

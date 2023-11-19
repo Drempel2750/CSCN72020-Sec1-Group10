@@ -85,8 +85,8 @@ public class GUI extends JFrame {
             numfields[5].setBounds(838, 35, 120, 60); // turbine breaks text field (add +4 to id to use)
             numfields[6].setBounds(341, 13, 120, 60); // radiation sensor text field
             numfields[7].setBounds(436, 243, 120, 60); // inlet water pressure text field
-            numfields[8].setBounds(212, 393, 120, 60); // rod 2 text field
-            numfields[9].setBounds(138, 393, 120, 60); // rod 1  text field
+            numfields[8].setBounds(212, 393, 120, 60); // rod text field
+            numfields[9].setBounds(138, 393, 120, 60); // rod text field
             numfields[10].setBounds(35, 170, 120, 60); // core temperature text field
 
         }
