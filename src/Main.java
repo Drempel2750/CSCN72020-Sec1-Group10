@@ -1,8 +1,9 @@
-import GUI.*;
-import Components.*;
+
+import java.io.FileNotFoundException;
+import java.util.Stack;
 
 public class Main {
-    public static void main(String[] args) {
-        GUI gui = new GUI();
+    public static void main(String[] args) throws FileNotFoundException {
+
     }
 }
