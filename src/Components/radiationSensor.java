@@ -1,7 +1,7 @@
 package ScadaBackend.Components;
 
-import ScadaBackend.ComponentAttributes.Radiation.Radiation;
-import ScadaBackend.ComponentAttributes.Radiation.radiationUnit;
+import Attributes.Radiation.Radiation;
+import Attributes.Radiation.radiationUnit;
 
 import java.util.Scanner;
 

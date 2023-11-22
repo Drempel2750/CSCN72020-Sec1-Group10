@@ -1,4 +1,4 @@
-package ScadaBackend.ComponentAttributes.Temperature;
+package Attributes.Temperature;
 
 public enum tempUnit {
     CELSIUS,

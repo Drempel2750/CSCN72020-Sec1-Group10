@@ -1,11 +1,7 @@
-package ScadaBackend.ComponentAttributes.Depth;
+package Attributes.Depth;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
+import Attributes.Attribute.Attribute;
 import ScadaBackend.FileHandling.FileHandling;
-
-import java.io.FileNotFoundException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Depth extends Attribute {
     private depthUnit unit;

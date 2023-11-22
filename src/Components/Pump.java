@@ -1,9 +1,8 @@
 package ScadaBackend.Components;
 
-import ScadaBackend.ComponentAttributes.Volume.Volume;
-import ScadaBackend.ComponentAttributes.Volume.volumeUnit;
+import Attributes.Volume.Volume;
+import Attributes.Volume.volumeUnit;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Pump extends Component {

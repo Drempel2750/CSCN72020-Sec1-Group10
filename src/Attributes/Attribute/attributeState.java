@@ -1,4 +1,4 @@
-package ScadaBackend.ComponentAttributes.Attribute;
+package Attributes.Attribute;
 
 public enum attributeState {
     OK,

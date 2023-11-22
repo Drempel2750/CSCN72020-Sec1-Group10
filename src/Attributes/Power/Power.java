@@ -1,7 +1,6 @@
-package ScadaBackend.ComponentAttributes.Power;
+package Attributes.Power;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-import ScadaBackend.ComponentAttributes.Depth.depthUnit;
+import Attributes.Attribute.Attribute;
 
 public class Power extends Attribute {
     public Power(float value, float minAcceptable, float maxAcceptable, float minWarning, float maxWarning) {

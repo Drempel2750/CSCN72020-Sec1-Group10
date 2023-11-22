@@ -2,8 +2,8 @@ package Components;
 
 package ScadaBackend.Components;
 
-import ScadaBackend.ComponentAttributes.Attribute.*;
-import ScadaBackend.ComponentAttributes.Power.*;
+import Attributes.Power.Power;
+
 public class Generator extends Component {
     private Power power;
     private final float minAcceptablePower = 100;

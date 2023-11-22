@@ -1,8 +1,6 @@
-package ScadaBackend.ComponentAttributes.Pressure;
+package Attributes.Pressure;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-
-import java.io.FileNotFoundException;
+import Attributes.Attribute.Attribute;
 
 public class Pressure extends Attribute {
     private pressureUnit unit;

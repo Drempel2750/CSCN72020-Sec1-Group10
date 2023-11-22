@@ -1,8 +1,6 @@
-package ScadaBackend.ComponentAttributes.Volume;
+package Attributes.Volume;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-
-import java.io.FileNotFoundException;
+import Attributes.Attribute.Attribute;
 
 public class Volume extends Attribute {
     private final volumeUnit unit;

@@ -1,10 +1,6 @@
-package ScadaBackend.ComponentAttributes.Radiation;
+package Attributes.Radiation;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-import ScadaBackend.ComponentAttributes.Pressure.Pressure;
-import ScadaBackend.ComponentAttributes.Pressure.pressureUnit;
-
-import java.io.FileNotFoundException;
+import Attributes.Attribute.Attribute;
 
 public class Radiation extends Attribute {
     private radiationUnit unit;

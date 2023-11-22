@@ -1,8 +1,7 @@
-package ScadaBackend.Components;
+package Components;
 
-import ScadaBackend.ComponentAttributes.Attribute.attributeState;
-import ScadaBackend.ComponentAttributes.Depth.Depth;
-import ScadaBackend.ComponentAttributes.Depth.depthUnit;
+import Attributes.Depth.Depth;
+import Attributes.Depth.depthUnit;
 
 public class controlRod extends Component {
     protected Depth depth;

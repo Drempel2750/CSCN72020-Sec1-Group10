@@ -1,7 +1,7 @@
 package ScadaBackend.Components;
 
-import ScadaBackend.ComponentAttributes.Temperature.Temperature;
-import ScadaBackend.ComponentAttributes.Temperature.tempUnit;
+import Attributes.Temperature.Temperature;
+import Attributes.Temperature.tempUnit;
 
 import java.util.Scanner;
 

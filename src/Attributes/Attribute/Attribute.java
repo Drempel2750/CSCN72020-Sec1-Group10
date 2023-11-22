@@ -1,9 +1,8 @@
-package ScadaBackend.ComponentAttributes.Attribute;
+package Attributes.Attribute;
 
 import ScadaBackend.Components.State;
 import ScadaBackend.FileHandling.FileHandling;
 
-import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

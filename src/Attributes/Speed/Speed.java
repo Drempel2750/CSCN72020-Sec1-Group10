@@ -1,10 +1,6 @@
-package ScadaBackend.ComponentAttributes.Speed;
+package Attributes.Speed;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-import ScadaBackend.ComponentAttributes.Temperature.Temperature;
-import ScadaBackend.ComponentAttributes.Temperature.tempUnit;
-
-import java.io.FileNotFoundException;
+import Attributes.Attribute.Attribute;
 
 public class Speed extends Attribute {
     private speedUnit unit;

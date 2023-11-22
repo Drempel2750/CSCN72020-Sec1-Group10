@@ -1,9 +1,6 @@
-package ScadaBackend.ComponentAttributes.Temperature;
+package Attributes.Temperature;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-import ScadaBackend.ComponentAttributes.Speed.speedUnit;
-
-import java.io.FileNotFoundException;
+import Attributes.Attribute.Attribute;
 
 public class Temperature extends Attribute {
     private tempUnit unit;//unit of temperature (Celsius, Fahrenheit, or Kelvin)
