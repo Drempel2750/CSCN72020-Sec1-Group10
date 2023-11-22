@@ -1,4 +1,4 @@
-package Components;
+package ScadaBackend.Components;
 
 import java.util.Scanner;
 
@@ -12,3 +12,4 @@ public class Valve extends Component {
         return;
     }
 }
+

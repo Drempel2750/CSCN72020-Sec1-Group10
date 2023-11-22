@@ -1,4 +1,7 @@
-package Components;
+package ScadaBackend.Components;
+
+import ScadaBackend.ComponentAttributes.Temperature.Temperature;
+import ScadaBackend.ComponentAttributes.Temperature.tempUnit;
 
 import java.util.Scanner;
 
@@ -13,6 +16,7 @@ public class temperatureSensor extends Component{
     {
         super(State.OFF, ID);
         temperature = new Temperature(0, tempUnit.CELSIUS, minAcceptableTemperature, maxAcceptableTemperature, minWarningTemperature, maxWarningTemperature);
+        temperature.updateState();
     }
     //getters
     public Temperature getTemperature() {
@@ -23,10 +27,12 @@ public class temperatureSensor extends Component{
     public void setTemperature(final Temperature temperature) {
         this.temperature = temperature;
     }
-
+    public void setUnit(tempUnit unit) {
+        this.temperature.setUnit(unit);
+    }
     @Override
     public void getComponentData(final Scanner scanner) {
         temperature.updateAttributeFromFile(scanner);
-        updateState(temperature);
+        temperature.updateState();
     }
 }

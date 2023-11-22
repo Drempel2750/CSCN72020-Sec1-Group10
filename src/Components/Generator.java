@@ -1,7 +1,9 @@
 package Components;
 
-import java.util.Scanner;
+package ScadaBackend.Components;
 
+import ScadaBackend.ComponentAttributes.Attribute.*;
+import ScadaBackend.ComponentAttributes.Power.*;
 public class Generator extends Component {
     private Power power;
     private final float minAcceptablePower = 100;
@@ -10,13 +12,18 @@ public class Generator extends Component {
     private final float maxWarningPower = 1500;
     public Generator(int ID)
     {
-        super(State.OFF, ID);
+        super(State.ON, ID);
         power = new Power(0, minAcceptablePower, maxAcceptablePower, minWarningPower, maxWarningPower);
+        power.updateState();
     }
     @Override
     public void getComponentData(final Scanner scanner) {
-        power.updateAttributeFromFile(scanner);
-        updateState(power);
+        if (super.getState() == State.OFF) {
+            power.setValue(0);
+        }
+        else
+            power.updateAttributeFromFile(scanner);
+        power.updateState();
     }
     public Power getPower() {
         return power;

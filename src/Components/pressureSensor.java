@@ -1,19 +1,24 @@
-package Components;
+package ScadaBackend.Components;
 
-import java.util.Scanner;
+import ScadaBackend.ComponentAttributes.Pressure.Pressure;
+import ScadaBackend.ComponentAttributes.Pressure.pressureUnit;
 
 public class pressureSensor extends Component {
-    private Pressure pressure;
+    Pressure pressure;
     private final float minAcceptablePressure = 50;
     private final float maxAcceptablePressure = 200;
     private final float minWarningPressure = 20;
-    private final float maxWarningPressure = 500;
+    private final float maxWarningPressure = 400;
     public pressureSensor(int ID) {
         super(State.OFF, ID);
         pressure = new Pressure(0, pressureUnit.PSI, minAcceptablePressure, maxAcceptablePressure, minWarningPressure, maxWarningPressure);
+        pressure.updateState();
     }
     public Pressure getPressure() {
         return pressure;
+    }
+    public void setUnit(pressureUnit unit) {
+        this.pressure.setUnit(unit);
     }
     public void setPressure(final Pressure pressure) {
         this.pressure = pressure;
@@ -21,6 +26,7 @@ public class pressureSensor extends Component {
     @Override
     public void getComponentData(final Scanner scanner) {
         pressure.updateAttributeFromFile(scanner);
-        updateState(pressure);
+        pressure.updateState();
     }
 }
+

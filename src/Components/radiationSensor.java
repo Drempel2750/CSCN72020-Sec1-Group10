@@ -1,4 +1,7 @@
-package Components;
+package ScadaBackend.Components;
+
+import ScadaBackend.ComponentAttributes.Radiation.Radiation;
+import ScadaBackend.ComponentAttributes.Radiation.radiationUnit;
 
 import java.util.Scanner;
 
@@ -11,6 +14,7 @@ public class radiationSensor extends Component {
     public radiationSensor(int ID) {
         super(State.OFF, ID);
         radiation = new Radiation(0, radiationUnit.MSV, minAcceptableRadiation, maxAcceptableRadiation, minWarningRadiation, maxWarningRadiation);
+        radiation.updateState();
     }
 
     public Radiation getRadiation() {
@@ -20,6 +24,6 @@ public class radiationSensor extends Component {
     @Override
     public void getComponentData(final Scanner scanner) {
         radiation.updateAttributeFromFile(scanner);
-        updateState(radiation);
+        radiation.updateState();
     }
 }
