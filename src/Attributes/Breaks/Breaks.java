@@ -1,7 +1,7 @@
 package Attributes.Breaks;
 
 import Attributes.Attribute.Attribute;
-import ScadaBackend.FileHandling.FileHandling;
+import FileHandling.FileHandling;
 
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;

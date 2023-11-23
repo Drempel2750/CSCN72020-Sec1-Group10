@@ -64,13 +64,14 @@ public class Attribute {
     public void updateState() {
         if (value < getMaxAcceptable() && value > getMinAcceptable())
             state = attributeState.OK;//if value is between min and max acceptable, continue with on state
-        else if (value < getMaxWarning() || value > getMinWarning())
+        else if (value < getMaxWarning() && value > getMinWarning())
             state = attributeState.WARNING;
         /*
         if value is greater or less than min and max acceptable, but not greater or less than maxWarning
         and minWarning, the component is in an error state.
         */
-        state = attributeState.ERROR;
+        else
+            state = attributeState.ERROR;
         //any other condition, the component is in an error state which must be manually dealt with
     }
 
