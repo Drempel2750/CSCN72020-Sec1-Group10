@@ -5,14 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ScadaBackend.ComponentAttributes.Attribute.Attribute;
+import ScadaBackend.ComponentAttributes.Attribute.attributeState;
+import ScadaBackend.Components.State;
+
 public class GUI extends JFrame {
     ImageIcon logo = new ImageIcon("NukeIcon.png");
-    JLabel background = new JLabel(new ImageIcon("Layout 2.jpg"));
+    JLabel background = new JLabel(new ImageIcon("Layout 3.jpg"));
     public LightTextpanel centerpanel;
-    public Controlpanel bottompanel;
-
     ImageIcon controlrod = new ImageIcon("ControlRod_1.png");
-
     public GUI() {
         this.setTitle("Nuclear Plant Control Panel");
         this.setLayout(null);
@@ -23,18 +24,13 @@ public class GUI extends JFrame {
         this.setIconImage(logo.getImage());
         centerpanel = new LightTextpanel();
         this.add(centerpanel);
-        bottompanel = new Controlpanel();
-        this.add(bottompanel);
         this.setVisible(true);
     }
-
-    //public void MoveRod (Depth D) {
-
-   // }
-
     public class LightTextpanel extends JPanel {
         public JLabel[] statuslights = new JLabel[5];
         public JLabel[] numfields = new JLabel[11];
+        public JLabel rod1 = new JLabel();
+        public JLabel rod2 = new JLabel();
         ImageIcon redlight = new ImageIcon("Red_Light_1.jpg");
         ImageIcon greenlight = new ImageIcon("Green_Light_1.jpg");
 
@@ -45,7 +41,6 @@ public class GUI extends JFrame {
             InitStatuslights();
             InitNumfields();
         }
-
         public void InitStatuslights() {
             Image newredlight = redlight.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT); // rescaling red and green lights to fit properly
             redlight.setImage(newredlight);
@@ -53,7 +48,6 @@ public class GUI extends JFrame {
             greenlight.setImage(newgreenlight);
             for (int i = 0; i < 5; i++) {
                 statuslights[i] = new JLabel(); // initalizing array of JLables and setting lights to red
-                statuslights[i].setIcon(redlight);
                 this.add(statuslights[i]);
                 statuslights[i].setVisible(true);
             }
@@ -62,13 +56,33 @@ public class GUI extends JFrame {
             statuslights[2].setBounds(925, 255, 40, 40); // light for steam valve 2
             statuslights[3].setBounds(1130, 40, 40, 40); // light for generator
             statuslights[4].setBounds(543, 70, 40, 40); // light for steam valve 1
-
+        }
+        public void initControlRods(Attribute a) {
+            rod1.setIcon(controlrod);
+            rod2.setIcon(controlrod);
+            this.add(rod1);
+            this.add(rod2);
+            rod1.setVisible(true);
+            rod2.setVisible(true);
+            rod1.setBounds(223, 212 + ((int)a.getValue() * 2), 9, 62);
+            rod2.setBounds(242, 212 + ((int)a.getValue() * 2), 9, 62);
+        }
+        public void rodUp() {
+            if (rod1.getY() == 212)
+                return;
+            rod1.setBounds(223, rod1.getY() - 2, 9, 62);
+            rod2.setBounds(242, rod2.getY() - 2, 9, 62);
+        }
+        public void rodDown() {
+            if (rod1.getY() == 272)
+                return;
+            rod1.setBounds(223, rod1.getY() + 2, 9, 62);
+            rod2.setBounds(242, rod2.getY() + 2, 9, 62);
         }
         public void InitNumfields() {
             for (int i = 0; i < 11; i++) {
                 numfields[i] = new JLabel();
-                numfields[i].setFont(new Font("Tahoma", Font.BOLD, 16));
-                numfields[i].setForeground(Color.RED);
+                numfields[i].setFont(new Font("Tahoma", Font.BOLD, 15));
                 numfields[i].setHorizontalAlignment(JLabel.CENTER);
                 numfields[i].setVerticalAlignment(JLabel.CENTER);
                 numfields[i].setHorizontalTextPosition(JLabel.CENTER);
@@ -85,70 +99,29 @@ public class GUI extends JFrame {
             numfields[5].setBounds(838, 35, 120, 60); // turbine breaks text field (add +4 to id to use)
             numfields[6].setBounds(341, 13, 120, 60); // radiation sensor text field
             numfields[7].setBounds(436, 243, 120, 60); // inlet water pressure text field
-            numfields[8].setBounds(212, 393, 120, 60); // rod text field
-            numfields[9].setBounds(138, 393, 120, 60); // rod text field
+            numfields[8].setBounds(212, 393, 120, 60); // rod 2 text field
+            numfields[9].setBounds(138, 393, 120, 60); // rod 1  text field
             numfields[10].setBounds(35, 170, 120, 60); // core temperature text field
 
         }
-        public void UpdateStatusLight(int ID) {
+        public void UpdateStatusLight(int ID, State s) {
             if (ID < 0 || ID > 4) { // checking that ID won't go above/below buffer contents
                 System.out.println("ERROR: ID value caused buffer under/overflow. Exiting program.");
                 System.exit(-1);
             }
-            if (statuslights[ID].getIcon() == redlight) { // replacing red light with green
-                statuslights[ID].setVisible(false);
-                statuslights[ID].setIcon(greenlight);
-                statuslights[ID].setVisible(true);
-            } else {
-                statuslights[ID].setVisible(false); // replacing green light with red
+            if (s == State.OFF)
                 statuslights[ID].setIcon(redlight);
-                statuslights[ID].setVisible(true);
-            }
+            else
+                statuslights[ID].setIcon(greenlight);
+        }
+        public void updateTextField (int ID, Attribute a, String unit) {
+            numfields[ID].setText((a.getValue()) + unit);
+            if (a.getState() == attributeState.OK)
+                numfields[ID].setForeground(new Color(0x00720B));
+            else if (a.getState() == attributeState.WARNING)
+                numfields[ID].setForeground(Color.YELLOW);
+            else
+                numfields[ID].setForeground(Color.RED);
         }
     }
-    public class Controlpanel extends JPanel implements ActionListener {
-        public JButton[] buttons = new JButton[12];
-        Controlpanel() {
-            for (int i = 0; i < 12; i++) {
-                this.setLayout(null);
-                this.setBounds(0, 500, 1400, 400);
-                this.setOpaque(false);
-                this.setVisible(true);
-                buttons[i] = new JButton("TEST");
-                buttons[i].setForeground(Color.RED);
-                buttons[i].setBackground(new Color(0x000C72));
-                buttons[i].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
-                buttons[i].setFont(new Font("Tahoma", Font.BOLD, 16));
-                buttons[i].addActionListener(this);
-                this.add(buttons[i]);
-                buttons[i].setVisible(true);
-            }
-            buttons[0].setBounds(100, 25, 125, 70); //rod up button
-            buttons[1].setBounds(250, 25, 125, 70); //rod down button
-            buttons[2].setBounds(370, 250, 125, 70); //pump up button
-            buttons[3].setBounds(505, 250, 125, 70); //pump up button
-            buttons[4].setBounds(720, 250, 125, 70); //turbine breaks up button
-            buttons[5].setBounds(855, 250, 125, 70); //turbine breaks down button
-            buttons[6].setBounds(1050, 0, 125, 70); //steam valve 1 button
-            buttons[7].setBounds(1050, 100, 125, 70); //steam valve 2 up button
-            buttons[8].setBounds(1250, 0, 125, 70); //pump state button
-            buttons[9].setBounds(1250, 100, 125, 70); //turbine state button
-            buttons[10].setBounds(1250, 200, 125, 70); //generator state button
-
-            buttons[11].setBounds(50, 150, 175, 125); // SCRAM shutdown button
-            buttons[11].setBackground(new Color(0xA10003));
-            buttons[11].setForeground(new Color(0xFFFFFF));
-            buttons[11].setFont(new Font("Tahoma", Font.BOLD, 28));
-            buttons[11].setText("SCRAM");
-        }
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == buttons[0]) {System.exit(1);}
-
-        }
-
-
-    }
-
-
-
 }
