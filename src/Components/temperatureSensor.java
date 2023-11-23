@@ -1,4 +1,4 @@
-package ScadaBackend.Components;
+package Components;
 
 import Attributes.Temperature.Temperature;
 import Attributes.Temperature.tempUnit;

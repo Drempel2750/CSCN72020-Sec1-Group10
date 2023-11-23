@@ -18,38 +18,21 @@ public class Pressure extends Attribute {
         return unit;
     }
     public void setUnit(pressureUnit unit) {
-        convertBetween(this.unit, unit);
+        //convertBetween(this.unit, unit);
         this.unit = unit;
     }
-
-    public void convertBetween(final pressureUnit startingUnit, final pressureUnit endingUnit)
-    {
-        if (startingUnit == endingUnit)
-            return;
-        if (endingUnit == pressureUnit.PSI) {
-            setValue(barToPsi(getValue()));
-            setMaxAcceptable(barToPsi(getMaxAcceptable()));
-            setMinAcceptable(barToPsi(getMinAcceptable()));
-            setMinWarning(barToPsi(getMinWarning()));
-            setMaxWarning(barToPsi(getMaxWarning()));
-        }
-        else {
-            setValue(psiToBar(getValue()));
-            setMaxAcceptable(psiToBar(getMaxAcceptable()));
-            setMinAcceptable(psiToBar(getMinAcceptable()));
-            setMinWarning(psiToBar(getMinWarning()));
-            setMaxWarning(psiToBar(getMaxWarning()));
-        }
+    @Override
+    public float getValue() {
+        if (this.unit == pressureUnit.PSI)
+            return super.getValue();
+        else
+            return psiToBar(super.getValue());
     }
 
     //Convert PSI to BAR
     public float psiToBar(float psiValue) {
-        return psiValue * 0.0689475729f;
-    }
-
-    //Convert BAR to PSI
-    public float barToPsi(float barValue) {
-        return barValue / 0.0689475729f;
+        float barValue = psiValue * 0.0689475729f;
+        return (float) (Math.round(barValue * 100.0)/100.0);
     }
 
 }

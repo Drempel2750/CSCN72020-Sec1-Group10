@@ -1,7 +1,9 @@
-package ScadaBackend.Components;
+package Components;
 
-import Attributes.Pressure.Pressure;
-import Attributes.Pressure.pressureUnit;
+import ScadaBackend.ComponentAttributes.Pressure.Pressure;
+import ScadaBackend.ComponentAttributes.Pressure.pressureUnit;
+
+import java.util.Scanner;
 
 public class pressureSensor extends Component {
     Pressure pressure;

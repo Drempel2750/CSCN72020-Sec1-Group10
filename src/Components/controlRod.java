@@ -1,7 +1,11 @@
 package Components;
 
-import Attributes.Depth.Depth;
-import Attributes.Depth.depthUnit;
+import ScadaBackend.ComponentAttributes.Attribute.attributeState;
+import ScadaBackend.ComponentAttributes.Depth.Depth;
+import ScadaBackend.ComponentAttributes.Depth.depthUnit;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class controlRod extends Component {
     protected Depth depth;

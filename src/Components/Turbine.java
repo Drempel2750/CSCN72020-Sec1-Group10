@@ -1,18 +1,19 @@
-package ScadaBackend.Components;
+package Components;
 
 import ScadaBackend.ComponentAttributes.Breaks.Breaks;
-import Attributes.Speed.Speed;
-import Attributes.Speed.speedUnit;
+import ScadaBackend.ComponentAttributes.Speed.Speed;
+import ScadaBackend.ComponentAttributes.Speed.speedUnit;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Turbine extends Component {
     private Speed speed;
     private Breaks breaks;
     private final int minAcceptableSpeed = 300;
-    private final int maxAcceptableSpeed = 2500;
+    private final int maxAcceptableSpeed = 650;
     private final int minWarningSpeed = 150;
-    private final int maxWarningSpeed = 3200;
+    private final int maxWarningSpeed = 800;
     private final int minAcceptableBreaks = 20;
     private final int maxAcceptableBreaks = 80;
     private final int minWarningBreaks = 10;
@@ -20,7 +21,7 @@ public class Turbine extends Component {
     public Turbine(int ID) {
         super(State.ON, ID);
         speed = new Speed(0, speedUnit.RPM,  minAcceptableSpeed, maxAcceptableSpeed, minWarningSpeed, maxWarningSpeed);
-        breaks = new Breaks(30, minAcceptableBreaks, maxAcceptableBreaks, minWarningBreaks, maxWarningBreaks);
+        breaks = new Breaks(50, minAcceptableBreaks, maxAcceptableBreaks, minWarningBreaks, maxWarningBreaks);
         speed.updateState();
         breaks.updateState();
     }

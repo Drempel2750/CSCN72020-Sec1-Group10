@@ -16,35 +16,25 @@ public class Temperature extends Attribute {
     }
     //setters
     public void setUnit(final tempUnit unit) {
-        convertBetween(this.unit, unit);//update value when different unit used.
+        //convertBetween(this.unit, unit);
         this.unit = (unit);
     }
+    // getters
+    public tempUnit getUnit() {
+        return this.unit;
+    }
     //conversion functions
-    public void convertBetween(final tempUnit startingUnit, final tempUnit endingUnit) {
-        if (startingUnit == endingUnit)
-            return;
-        if (startingUnit == tempUnit.CELSIUS)
-        {
-            setValue(celsiusToFahrenheit(getValue()));
-            setMaxAcceptable(celsiusToFahrenheit(getMaxAcceptable()));
-            setMinAcceptable(celsiusToFahrenheit(getMinAcceptable()));
-            setMinWarning(celsiusToFahrenheit(getMinWarning()));
-            setMaxWarning(celsiusToFahrenheit(getMaxWarning()));
-        }
+    @Override
+    public float getValue() {
+        if (this.unit == tempUnit.CELSIUS)
+            return super.getValue();
         else
-        {
-            setValue(fahrenheitToCelsius(getValue()));
-            setMaxAcceptable(fahrenheitToCelsius(getMaxAcceptable()));
-            setMinAcceptable(fahrenheitToCelsius(getMinAcceptable()));
-            setMinWarning(fahrenheitToCelsius(getMinWarning()));
-            setMaxWarning(fahrenheitToCelsius(getMaxWarning()));
-        }
+            return celsiusToFahrenheit(super.getValue());
     }
     private float celsiusToFahrenheit(final float value) {
-        return (value * (9f / 5f)) + 32f;
+        float fval = (value * 9/5) + 32;
+        return (float) (Math.round(fval * 100.0)/100.0);
     }
-    private float fahrenheitToCelsius(final float value) {
-        return (value - 32f) * (5f / 9f);
-    }
+
 
 }

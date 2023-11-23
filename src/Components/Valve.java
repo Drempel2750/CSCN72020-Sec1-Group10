@@ -1,4 +1,4 @@
-package ScadaBackend.Components;
+package Components;
 
 import java.util.Scanner;
 

@@ -1,12 +1,12 @@
 package reactorSystem;
 
-import ScadaBackend.ComponentAttributes.Attribute.*;
-import ScadaBackend.ComponentAttributes.Depth.depthUnit;
-import ScadaBackend.ComponentAttributes.Pressure.pressureUnit;
-import ScadaBackend.ComponentAttributes.Speed.speedUnit;
-import ScadaBackend.ComponentAttributes.Temperature.tempUnit;
-import ScadaBackend.ComponentAttributes.Volume.volumeUnit;
-import ScadaBackend.Components.*;
+import Attributes.Attribute.*;
+import Attributes.Depth.depthUnit;
+import Attributes.Pressure.pressureUnit;
+import Attributes.Speed.speedUnit;
+import Attributes.Temperature.tempUnit;
+import Attributes.Volume.volumeUnit;
+import Components.*;
 import ScadaBackend.FileHandling.*;
 
 import java.awt.*;
@@ -28,13 +28,13 @@ public class reactorSystem {
     protected SidePanel sidepanel;
     //components
     protected final controlRod rod;
-    protected final ScadaBackend.Components.pressureSensor gauge1, gauge2, gauge3;
-    protected final ScadaBackend.Components.Pump pump;
-    protected final ScadaBackend.Components.Valve valve1, valve2;
+    protected final pressureSensor gauge1, gauge2, gauge3;
+    protected final Pump pump;
+    protected final Valve valve1, valve2;
     protected final Generator generator;
-    protected final ScadaBackend.Components.radiationSensor radSensor;
-    protected final ScadaBackend.Components.temperatureSensor tempSensor;
-    protected final ScadaBackend.Components.Turbine turbine;
+    protected final radiationSensor radSensor;
+    protected final temperatureSensor tempSensor;
+    protected final Turbine turbine;
 
     //character streams of component attribute values
     private final Scanner pressureScanner, pressureScanner2, pressureScanner3;
@@ -49,16 +49,16 @@ public class reactorSystem {
         this.sidepanel = new SidePanel();
         gui.add(sidepanel);
         rod = new controlRod(8);
-        gauge1 = new ScadaBackend.Components.pressureSensor(7);
-        gauge2 = new ScadaBackend.Components.pressureSensor(4);
-        gauge3 = new ScadaBackend.Components.pressureSensor(2);
-        valve1 = new ScadaBackend.Components.Valve(5);
-        valve2 = new ScadaBackend.Components.Valve(9);
-        pump = new ScadaBackend.Components.Pump(0);
+        gauge1 = new pressureSensor(7);
+        gauge2 = new pressureSensor(4);
+        gauge3 = new pressureSensor(2);
+        valve1 = new Valve(5);
+        valve2 = new Valve(9);
+        pump = new Pump(0);
         generator = new Generator(3);
-        radSensor = new ScadaBackend.Components.radiationSensor(6);
-        tempSensor = new ScadaBackend.Components.temperatureSensor(10);
-        turbine = new ScadaBackend.Components.Turbine(1);
+        radSensor = new radiationSensor(6);
+        tempSensor = new temperatureSensor(10);
+        turbine = new Turbine(1);
 
         gui.centerpanel.initControlRods(rod.getDepth());
 

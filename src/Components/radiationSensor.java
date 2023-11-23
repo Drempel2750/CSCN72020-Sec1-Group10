@@ -1,4 +1,4 @@
-package ScadaBackend.Components;
+package Components;
 
 import Attributes.Radiation.Radiation;
 import Attributes.Radiation.radiationUnit;
