@@ -1,8 +1,8 @@
 package Components;
 
-import ScadaBackend.ComponentAttributes.Breaks.Breaks;
-import ScadaBackend.ComponentAttributes.Speed.Speed;
-import ScadaBackend.ComponentAttributes.Speed.speedUnit;
+import Attributes.Breaks.Breaks;
+import Attributes.Speed.Speed;
+import Attributes.Speed.speedUnit;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;

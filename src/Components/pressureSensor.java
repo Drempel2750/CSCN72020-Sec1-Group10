@@ -1,7 +1,7 @@
 package Components;
 
-import ScadaBackend.ComponentAttributes.Pressure.Pressure;
-import ScadaBackend.ComponentAttributes.Pressure.pressureUnit;
+import Attributes.Pressure.Pressure;
+import Attributes.Pressure.pressureUnit;
 
 import java.util.Scanner;
 

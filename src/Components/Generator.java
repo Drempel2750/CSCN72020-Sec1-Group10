@@ -1,7 +1,7 @@
 package Components;
 
-import ScadaBackend.ComponentAttributes.Attribute.*;
-import ScadaBackend.ComponentAttributes.Power.*;
+import Attributes.Attribute.*;
+import Attributes.Power.*;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
