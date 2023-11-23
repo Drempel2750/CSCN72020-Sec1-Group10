@@ -1,5 +1,4 @@
-package ScadaBackend.FileHandling;
-
+package FileHandling;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

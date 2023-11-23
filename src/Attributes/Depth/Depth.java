@@ -1,7 +1,7 @@
 package Attributes.Depth;
 
 import Attributes.Attribute.Attribute;
-import ScadaBackend.FileHandling.FileHandling;
+import FileHandling.FileHandling;
 
 public class Depth extends Attribute {
     private depthUnit unit;

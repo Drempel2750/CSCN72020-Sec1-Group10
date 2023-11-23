@@ -1,7 +1,7 @@
 package Attributes.Attribute;
 
-import ScadaBackend.Components.State;
-import ScadaBackend.FileHandling.FileHandling;
+import Components.State;
+import FileHandling.FileHandling;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

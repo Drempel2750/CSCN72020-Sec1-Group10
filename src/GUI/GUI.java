@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import ScadaBackend.ComponentAttributes.Attribute.Attribute;
-import ScadaBackend.ComponentAttributes.Attribute.attributeState;
-import ScadaBackend.Components.State;
+import Attributes.Attribute.Attribute;
+import Attributes.Attribute.attributeState;
+import Components.State;
 
 public class GUI extends JFrame {
     ImageIcon logo = new ImageIcon("NukeIcon.png");
