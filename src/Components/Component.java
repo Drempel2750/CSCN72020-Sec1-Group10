@@ -11,6 +11,10 @@ public abstract class Component {
     protected final int ID;
     public Component(State state, final int ID) {
         this.state = state;
+        if (ID < 0) {
+            System.out.println("ERROR: Invalid ID Value Passed!");
+            System.exit(1);
+        }
         this.ID = ID;
     }
     public State getState() {
