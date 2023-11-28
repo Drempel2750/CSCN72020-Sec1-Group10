@@ -52,6 +52,7 @@ public class Pump extends Component {
     }
     public void setPumpVolume(Volume pumpVolume) {
         this.pumpVolume = pumpVolume;
+        this.pumpVolume.updateState();
     }
 
     @Override
