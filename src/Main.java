@@ -7,22 +7,25 @@ public class Main {
         GUI gui = new GUI();
         reactorSystem system = new reactorSystem(gui);
         int loopcount = 0;
-        for (int i = 0; i <= 10; i++) {
-
+        for (int i = 0; i <= 10;) {
             system.printAllComponentAttributes();
             system.updateLights();
-            if (i == 10) {
-                system.readAllComponents();
-                i = 0;
-                loopcount++;
-                if (loopcount == 30) {
-                    i = 11;
+            if (!system.isPaused()) {
+                if (i == 10) {
+                    system.readAllComponents();
+                    i = 0;
+                    loopcount++;
+                    system.sidepanel.setSimcounter(loopcount);
+                    if (loopcount == 30) {
+                        i = 11;
+                    }
                 }
-            }
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                i++;
             }
         }
         system.closeAllScanners();

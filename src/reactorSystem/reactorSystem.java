@@ -24,8 +24,8 @@ import javax.swing.*;
 
 public class reactorSystem {
     private GUI gui;
-    protected Controlpanel bottompanel;
-    protected SidePanel sidepanel;
+    public Controlpanel bottompanel;
+    public SidePanel sidepanel;
     //components
     protected final controlRod rod;
     protected final pressureSensor gauge1, gauge2, gauge3;
@@ -42,6 +42,9 @@ public class reactorSystem {
     private final Scanner reactorScanner;
     private final Scanner turbineScanner;
     private final Scanner generatorScanner;
+
+    //bool to check whether user has paused the simulation
+    protected boolean simstate;
     public reactorSystem(GUI gui) throws FileNotFoundException {
         this.gui = gui;
         this.bottompanel = new Controlpanel();
@@ -70,6 +73,7 @@ public class reactorSystem {
         turbineScanner = FileHandling.openReadStream("turbineFile.txt");
         generatorScanner = FileHandling.openReadStream("generatorFile.txt");
 
+        simstate = true; // start the application with the simulation paused
     }
     public void closeAllScanners()
     {
@@ -127,6 +131,9 @@ public class reactorSystem {
         gui.centerpanel.updateTextField(turbine.getID(), turbine.getSpeed(), " RPM");
         gui.centerpanel.updateTextField(turbine.getID()+4, turbine.getBreaks(), "%");
         gui.centerpanel.updateTextField(pump.getID(), pump.getPumpVolume(), " L/s");
+    }
+    public boolean isPaused() {
+        return this.simstate;
     }
     public class Controlpanel extends JPanel implements ActionListener {
         public JButton[] buttons = new JButton[12];
@@ -259,6 +266,8 @@ public class reactorSystem {
     }
     public class SidePanel extends JPanel implements ActionListener {
         public JButton[] unitcontrol = new JButton[2];
+        public JButton simcontrol = new JButton();
+        public JLabel simcounter = new JLabel();
         public SidePanel() {
             this.setLayout(null);
             this.setBounds(1400, 0, 200, 900);
@@ -274,12 +283,28 @@ public class reactorSystem {
                 this.add(unitcontrol[i]);
                 unitcontrol[i].setVisible(true);
             }
-            unitcontrol[0].setBounds(0, 250, 125, 70);
+            unitcontrol[0].setBounds(0, 300, 125, 70);
             unitcontrol[0].setText("Fahrenheit");
-            unitcontrol[1].setBounds(0, 400, 125, 70);
+            unitcontrol[1].setBounds(0, 450, 125, 70);
             unitcontrol[1].setText("Barometric");
+            simcontrol.setForeground(Color.WHITE);
+            simcontrol.setBackground(new Color(0x520002));
+            simcontrol.setFont(new Font("Tahoma", Font.BOLD, 16));
+            simcontrol.addActionListener(this);
+            this.add(simcontrol);
+            simcontrol.setVisible(true);
+            simcontrol.setBounds(0, 100, 125, 70);
+            simcontrol.setText("START");
+            this.add(simcounter);
+            simcounter.setForeground(Color.BLACK);
+            simcounter.setFont(new Font("Gotham", Font.ITALIC, 16));
+            simcounter.setText("0 / 240");
+            simcounter.setBounds(30, 10, 100, 75);
+            simcounter.setVisible(true);
         }
-
+        public void setSimcounter(int num) {
+            simcounter.setText(num + " / 240");
+        }
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == unitcontrol[0]) {
                 if (tempSensor.getTemperature().getUnit() == tempUnit.CELSIUS) {
@@ -291,7 +316,7 @@ public class reactorSystem {
                     tempSensor.setUnit(tempUnit.CELSIUS);
                 }
             }
-            else {
+            else if (e.getSource() == unitcontrol[1]) {
                 if (gauge1.getPressure().getUnit() == pressureUnit.PSI) {
                     unitcontrol[1].setText("PSI");
                     gauge1.setUnit(pressureUnit.BAR);
@@ -303,6 +328,16 @@ public class reactorSystem {
                     gauge1.setUnit(pressureUnit.PSI);
                     gauge2.setUnit(pressureUnit.PSI);
                     gauge3.setUnit(pressureUnit.PSI);
+                }
+            }
+            else {
+                if (!simstate) {
+                    simstate = true;
+                    simcontrol.setText("START");
+                }
+                else {
+                    simstate = false;
+                    simcontrol.setText("STOP");
                 }
             }
         }
