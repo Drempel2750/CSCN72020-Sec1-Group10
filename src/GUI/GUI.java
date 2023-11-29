@@ -87,7 +87,6 @@ public class GUI extends JFrame {
                 numfields[i].setVerticalAlignment(JLabel.CENTER);
                 numfields[i].setHorizontalTextPosition(JLabel.CENTER);
                 numfields[i].setVerticalTextPosition(JLabel.CENTER);
-                numfields[i].setText("TEST");
                 this.add(numfields[i]);
                 numfields[i].setVisible(true);
             }

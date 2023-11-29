@@ -16,6 +16,11 @@ public class pressureSensor extends Component {
         pressure = new Pressure(0, pressureUnit.PSI, minAcceptablePressure, maxAcceptablePressure, minWarningPressure, maxWarningPressure);
         pressure.updateState();
     }
+    public pressureSensor(int ID, float minACC, float maxACC, float minWAR, float maxWAR) {
+        super(State.OFF, ID);
+        pressure = new Pressure(0, pressureUnit.PSI, minACC, maxACC, minWAR, maxWAR);
+        pressure.updateState();
+    }
     public Pressure getPressure() {
         return pressure;
     }
