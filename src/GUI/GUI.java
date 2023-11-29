@@ -86,8 +86,7 @@ public class GUI extends JFrame {
                 numfields[i].setHorizontalAlignment(JLabel.CENTER);
                 numfields[i].setVerticalAlignment(JLabel.CENTER);
                 numfields[i].setHorizontalTextPosition(JLabel.CENTER);
-                numfields[i].setVerticalTextPosition(JLabel.CENTER);
-                this.add(numfields[i]);
+                numfields[i].setVerticalTextPosition(JLabel.CENTER);                this.add(numfields[i]);
                 numfields[i].setVisible(true);
             }
             numfields[0].setBounds(513, 400, 120, 60); // pump speed text field

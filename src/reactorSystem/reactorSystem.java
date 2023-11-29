@@ -52,7 +52,7 @@ public class reactorSystem {
         this.sidepanel = new SidePanel();
         gui.add(sidepanel);
         rod = new controlRod(8);
-        gauge1 = new pressureSensor(7);
+        gauge1 = new pressureSensor(7, 20, 40, 10, 50);
         gauge2 = new pressureSensor(4);
         gauge3 = new pressureSensor(2);
         valve1 = new Valve(5);
