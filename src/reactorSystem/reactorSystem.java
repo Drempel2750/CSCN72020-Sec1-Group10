@@ -74,14 +74,14 @@ public class reactorSystem {
     }
     public void openScanners() throws FileNotFoundException {
 
-        pressureScanner = FileHandling.openReadStream("pressureFile.txt");
-        pressureScanner2 = FileHandling.openReadStream("pressureFile2.txt");
-        pressureScanner3 = FileHandling.openReadStream("pressureFile3.txt");
-        radScanner = FileHandling.openReadStream("radSensor.txt");
-        reactorScanner = FileHandling.openReadStream("reactorFile.txt");
-        turbineScanner = FileHandling.openReadStream("turbineFile.txt");
-        generatorScanner = FileHandling.openReadStream("generatorFile.txt");
-        qualityScanner = FileHandling.openReadStream("qualityFile.txt");
+        pressureScanner = FileHandling.FileScanner("pressureFile.txt");
+        pressureScanner2 = FileHandling.FileScanner("pressureFile2.txt");
+        pressureScanner3 = FileHandling.FileScanner("pressureFile3.txt");
+        radScanner = FileHandling.FileScanner("radSensor.txt");
+        reactorScanner = FileHandling.FileScanner("reactorFile.txt");
+        turbineScanner = FileHandling.FileScanner("turbineFile.txt");
+        generatorScanner = FileHandling.FileScanner("generatorFile.txt");
+        qualityScanner = FileHandling.FileScanner("qualityFile.txt");
     }
     public void closeAllScanners()
     {
