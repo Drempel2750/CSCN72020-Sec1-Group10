@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FileHandling {
-    public static Scanner openReadStream(String fileName) throws FileNotFoundException {
+    public static Scanner FileScanner(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (!file.exists()) { //file with specified name does not exist
             System.out.println("File does not exist");
