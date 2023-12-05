@@ -39,7 +39,7 @@ public class controlRod extends Component {
     }
     @Override
     public void getComponentData(final Scanner scanner) {
-        depth.updateAttributeFromFile(scanner);
+        depth.readAttribute(scanner);
         depth.updateState();
     }
 }

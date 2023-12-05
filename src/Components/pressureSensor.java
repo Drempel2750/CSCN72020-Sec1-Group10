@@ -32,7 +32,7 @@ public class pressureSensor extends Component {
     }
     @Override
     public void getComponentData(final Scanner scanner) {
-        pressure.updateAttributeFromFile(scanner);
+        pressure.readAttribute(scanner);
         pressure.updateState();
     }
 }

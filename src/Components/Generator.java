@@ -23,7 +23,7 @@ public class Generator extends Component {
             power.setValue(0);
         }
         else
-            power.updateAttributeFromFile(scanner);
+            power.readAttribute(scanner);
         power.updateState();
     }
     public Power getPower() {

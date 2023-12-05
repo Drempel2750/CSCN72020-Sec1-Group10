@@ -13,6 +13,4 @@ public class Speed extends Attribute {
         this.unit = unit;
     }
 
-
-
 }

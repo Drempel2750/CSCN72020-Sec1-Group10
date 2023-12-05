@@ -61,7 +61,7 @@ public class Pump extends Component {
             pumpVolume.setValue(0);
         }
         else
-            pumpVolume.updateAttributeFromFile(scanner);
+            pumpVolume.readAttribute(scanner);
         pumpVolume.updateState();
     }
 }

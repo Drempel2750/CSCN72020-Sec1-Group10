@@ -32,7 +32,7 @@ public class temperatureSensor extends Component{
     }
     @Override
     public void getComponentData(final Scanner scanner) {
-        temperature.updateAttributeFromFile(scanner);
+        temperature.readAttribute(scanner);
         temperature.updateState();
     }
 }
