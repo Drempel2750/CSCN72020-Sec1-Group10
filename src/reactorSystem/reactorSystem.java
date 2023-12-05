@@ -3,6 +3,7 @@ package reactorSystem;
 import Attributes.Attribute.*;
 import Attributes.Depth.depthUnit;
 import Attributes.Pressure.pressureUnit;
+import Attributes.Quality.Quality;
 import Attributes.Speed.speedUnit;
 import Attributes.Temperature.tempUnit;
 import Attributes.Volume.volumeUnit;
@@ -14,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import GUI.*;
@@ -35,16 +37,20 @@ public class reactorSystem {
     protected final radiationSensor radSensor;
     protected final temperatureSensor tempSensor;
     protected final Turbine turbine;
+    protected final qualitySensor qsensor;
 
     //character streams of component attribute values
-    private final Scanner pressureScanner, pressureScanner2, pressureScanner3;
-    private final Scanner radScanner;
-    private final Scanner reactorScanner;
-    private final Scanner turbineScanner;
-    private final Scanner generatorScanner;
+    private Scanner pressureScanner, pressureScanner2, pressureScanner3;
+    private Scanner radScanner;
+    private Scanner reactorScanner;
+    private Scanner turbineScanner;
+    private Scanner generatorScanner;
+    private Scanner qualityScanner;
 
     //bool to check whether user has paused the simulation
     protected boolean simstate;
+
+
     public reactorSystem(GUI gui) throws FileNotFoundException {
         this.gui = gui;
         this.bottompanel = new Controlpanel();
@@ -62,8 +68,11 @@ public class reactorSystem {
         radSensor = new radiationSensor(6);
         tempSensor = new temperatureSensor(10);
         turbine = new Turbine(1);
-
+        qsensor = new qualitySensor(11);
         gui.centerpanel.initControlRods(rod.getDepth());
+        simstate = true; // start the application with the simulation paused
+    }
+    public void openScanners() throws FileNotFoundException {
 
         pressureScanner = FileHandling.openReadStream("pressureFile.txt");
         pressureScanner2 = FileHandling.openReadStream("pressureFile2.txt");
@@ -72,8 +81,7 @@ public class reactorSystem {
         reactorScanner = FileHandling.openReadStream("reactorFile.txt");
         turbineScanner = FileHandling.openReadStream("turbineFile.txt");
         generatorScanner = FileHandling.openReadStream("generatorFile.txt");
-
-        simstate = true; // start the application with the simulation paused
+        qualityScanner = FileHandling.openReadStream("qualityFile.txt");
     }
     public void closeAllScanners()
     {
@@ -84,6 +92,7 @@ public class reactorSystem {
         reactorScanner.close();
         turbineScanner.close();
         generatorScanner.close();
+        qualityScanner.close();
     }
 
     public void readAllComponents()
@@ -95,6 +104,7 @@ public class reactorSystem {
         tempSensor.getComponentData(reactorScanner);
         turbine.getComponentData(turbineScanner);
         generator.getComponentData(generatorScanner);
+        qsensor.getComponentData(qualityScanner);
     }
     public void updateLights() {
         gui.centerpanel.UpdateStatusLight(0, pump.getState());
@@ -131,6 +141,7 @@ public class reactorSystem {
         gui.centerpanel.updateTextField(turbine.getID(), turbine.getSpeed(), " RPM");
         gui.centerpanel.updateTextField(turbine.getID()+4, turbine.getBreaks(), "%");
         gui.centerpanel.updateTextField(pump.getID(), pump.getPumpVolume(), " L/s");
+        gui.centerpanel.updateTextField(qsensor.getID(), qsensor.getQuality(), " PPM");
     }
     public boolean isPaused() {
         return this.simstate;
@@ -262,6 +273,29 @@ public class reactorSystem {
                     buttons[10].setForeground(Color.RED);
                 }
             }
+            else if (e.getSource() == buttons[11]) {
+                generator.turnOff();
+                buttons[10].setText("GEN ON");
+                buttons[10].setForeground(Color.GREEN);
+                turbine.turnOff();
+                buttons[9].setText("TURBINE ON");
+                buttons[9].setForeground(Color.GREEN);
+                pump.turnOn();
+                buttons[8].setText("PUMP OFF");
+                buttons[8].setForeground(Color.RED);
+                valve2.turnOn();
+                buttons[7].setText("CLOSE");
+                buttons[7].setForeground(Color.RED);
+                valve1.turnOn();
+                buttons[6].setText("CLOSE");
+                buttons[6].setForeground(Color.RED);
+                for (int i = 0; i < 30; i++) {
+                    rod.incDepth();
+                    gui.centerpanel.rodUp();
+                    turbine.incBreaks();
+                    pump.incVolume();
+                }
+            }
         }
     }
     public class SidePanel extends JPanel implements ActionListener {
@@ -303,7 +337,7 @@ public class reactorSystem {
             simcounter.setVisible(true);
         }
         public void setSimcounter(int num) {
-            simcounter.setText(num + " / 240");
+            simcounter.setText(num + " / 220");
         }
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == unitcontrol[0]) {

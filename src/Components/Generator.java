@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Generator extends Component {
     private Power power;
     private final float minAcceptablePower = 100;
-    private final float maxAcceptablePower = 1000;
+    private final float maxAcceptablePower = 750;
     private final float minWarningPower = 0.1f;
     private final float maxWarningPower = 1500;
     public Generator(int ID)

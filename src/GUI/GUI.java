@@ -28,7 +28,7 @@ public class GUI extends JFrame {
     }
     public class LightTextpanel extends JPanel {
         public JLabel[] statuslights = new JLabel[5];
-        public JLabel[] numfields = new JLabel[11];
+        public JLabel[] numfields = new JLabel[12];
         public JLabel rod1 = new JLabel();
         public JLabel rod2 = new JLabel();
         ImageIcon redlight = new ImageIcon("Red_Light_1.jpg");
@@ -37,7 +37,7 @@ public class GUI extends JFrame {
         public LightTextpanel() {
             this.setLayout(null);
             this.setOpaque(false);
-            this.setBounds(0, 0, 1400, 500);
+            this.setBounds(0, 0, 1400, 600);
             InitStatuslights();
             InitNumfields();
         }
@@ -80,13 +80,14 @@ public class GUI extends JFrame {
             rod2.setBounds(242, rod2.getY() + 2, 9, 62);
         }
         public void InitNumfields() {
-            for (int i = 0; i < 11; i++) {
+            for (int i = 0; i < 12; i++) {
                 numfields[i] = new JLabel();
                 numfields[i].setFont(new Font("Tahoma", Font.BOLD, 15));
                 numfields[i].setHorizontalAlignment(JLabel.CENTER);
                 numfields[i].setVerticalAlignment(JLabel.CENTER);
                 numfields[i].setHorizontalTextPosition(JLabel.CENTER);
-                numfields[i].setVerticalTextPosition(JLabel.CENTER);                this.add(numfields[i]);
+                numfields[i].setVerticalTextPosition(JLabel.CENTER);
+                this.add(numfields[i]);
                 numfields[i].setVisible(true);
             }
             numfields[0].setBounds(513, 400, 120, 60); // pump speed text field
@@ -100,7 +101,7 @@ public class GUI extends JFrame {
             numfields[8].setBounds(212, 393, 120, 60); // rod 2 text field
             numfields[9].setBounds(138, 393, 120, 60); // rod 1  text field
             numfields[10].setBounds(35, 170, 120, 60); // core temperature text field
-
+            numfields[11].setBounds(885, 503, 120, 60);
         }
         public void UpdateStatusLight(int ID, State s) {
             if (ID < 0 || ID > 4) { // checking that ID won't go above/below buffer contents
