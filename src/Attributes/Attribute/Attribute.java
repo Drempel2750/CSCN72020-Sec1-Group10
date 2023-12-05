@@ -75,7 +75,7 @@ public class Attribute {
         //any other condition, the component is in an error state which must be manually dealt with
     }
 
-    public boolean updateAttributeFromFile(final Scanner scanner) {
+    public boolean readAttribute(final Scanner scanner) {
         if (scanner == null)
             return false;
         float value;

@@ -56,7 +56,7 @@ public class Turbine extends Component {
             speed.setValue(0);
         }
         else
-            speed.updateAttributeFromFile(scanner);
+            speed.readAttribute(scanner);
         speed.updateState();
     }
 }

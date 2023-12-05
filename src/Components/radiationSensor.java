@@ -13,7 +13,7 @@ public class radiationSensor extends Component {
     private final float maxWarningRadiation = 25.5f;
     public radiationSensor(int ID) {
         super(State.OFF, ID);
-        radiation = new Radiation(0, radiationUnit.MSV, minAcceptableRadiation, maxAcceptableRadiation, minWarningRadiation, maxWarningRadiation);
+        radiation = new Radiation(0, radiationUnit.MILLISIEVERT, minAcceptableRadiation, maxAcceptableRadiation, minWarningRadiation, maxWarningRadiation);
         radiation.updateState();
     }
 
@@ -23,7 +23,7 @@ public class radiationSensor extends Component {
 
     @Override
     public void getComponentData(final Scanner scanner) {
-        radiation.updateAttributeFromFile(scanner);
+        radiation.readAttribute(scanner);
         radiation.updateState();
     }
 }
