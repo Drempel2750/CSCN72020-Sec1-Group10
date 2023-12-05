@@ -25,7 +25,7 @@ public class qualitySensor extends Component {
     public Quality getQuality() {return this.quality;}
     @Override
     public void getComponentData(final Scanner scanner) {
-        quality.updateAttributeFromFile(scanner);
+        quality.readAttribute(scanner);
         quality.updateState();
     }
 }
