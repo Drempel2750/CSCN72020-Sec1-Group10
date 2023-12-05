@@ -274,12 +274,6 @@ public class reactorSystem {
                 }
             }
             else if (e.getSource() == buttons[11]) {
-                generator.turnOff();
-                buttons[10].setText("GEN ON");
-                buttons[10].setForeground(Color.GREEN);
-                turbine.turnOff();
-                buttons[9].setText("TURBINE ON");
-                buttons[9].setForeground(Color.GREEN);
                 pump.turnOn();
                 buttons[8].setText("PUMP OFF");
                 buttons[8].setForeground(Color.RED);
