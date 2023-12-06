@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class pressureSensor extends Component {
     Pressure pressure;
     private final float minAcceptablePressure = 50;
-    private final float maxAcceptablePressure = 100;
+    private final float maxAcceptablePressure = 90;
     private final float minWarningPressure = 30;
     private final float maxWarningPressure = 150;
     public pressureSensor(int ID) {

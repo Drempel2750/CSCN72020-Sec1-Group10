@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class temperatureSensor extends Component{
     private Temperature temperature;
-    private final int minAcceptableTemperature = 240;
-    private final int maxAcceptableTemperature = 450;
+    private final int minAcceptableTemperature = 200;
+    private final int maxAcceptableTemperature = 250;
     private final int minWarningTemperature = 150;
-    private final int maxWarningTemperature = 650;
+    private final int maxWarningTemperature = 300;
     //setters
     public temperatureSensor(int ID)
     {
