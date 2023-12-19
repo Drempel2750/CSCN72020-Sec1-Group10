@@ -24,7 +24,7 @@ public class Main {
                         }
                     }
                     try {
-                        Thread.sleep(150);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
